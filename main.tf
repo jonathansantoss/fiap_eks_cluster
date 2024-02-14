@@ -18,20 +18,20 @@ data "terraform_remote_state" "eks" {
 
 variable "cluster-name" {
   type = string
-  default = "fiap-lanches-eks-${random_string.suffix.result}"
+  default = "fiap-lanches-${random_string.suffix.result}"
 }
 
 # Retrieve EKS cluster configuration
 data "aws_eks_cluster" "cluster" {
-  name = var.cluster-name
+  name = local.cluster_name
 }
 
 data "aws_eks_cluster_auth" "cluster" {
-  name = var.cluster-name
+  name = local.cluster_name
 }
 
 locals {
-  cluster_name = var.cluster-name
+  cluster_name = "fiap-lanches-eks-${random_string.suffix.result}"
 }
 
 resource "random_string" "suffix" {
