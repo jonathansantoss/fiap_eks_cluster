@@ -18,21 +18,21 @@ data "terraform_remote_state" "eks" {
 
 # Retrieve EKS cluster configuration
 data "aws_eks_cluster" "cluster" {
-  name = local.cluster_name
+  name = var.cluster_name
 }
 
 data "aws_eks_cluster_auth" "cluster" {
-  name = local.cluster_name
+  name = var.cluster_name
 }
 
 locals {
-  cluster_name = "fiap-lanches-eks-${random_string.suffix.result}"
+  cluster_name = var.cluster_name
 }
 
-resource "random_string" "suffix" {
-  length  = 8
-  special = false
-}
+# resource "random_string" "suffix" {
+#   length  = 8
+#   special = false
+# }
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
