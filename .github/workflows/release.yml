@@ -17,6 +17,8 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   helm:
+    permissions:
+      contents: write
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -24,6 +26,26 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "Jonathan"
+          git config user.email "jonathan.gomess1@gmail.com"
 
       - name: Clone Another Repository
         run: git clone https://github.com/jonathansantoss/fiap-lanches-helm.git gh-pages
+
+      - name: Remove Git Tag
+        run: |
+          git tag -d fiap-lanches-0.2.0
+          git push origin :fiap-lanches-0.2.0
+
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.6.0
+        with:
+          charts_dir: fiap-lanches
+          pages_branch: gh-pages
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
