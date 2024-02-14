@@ -1,4 +1,7 @@
 terraform {
+    backend "remote" {
+      organization = "mellll_tec"
+  }
   cloud {
     organization = "mellll_tec"
 

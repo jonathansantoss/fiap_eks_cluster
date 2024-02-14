@@ -10,7 +10,7 @@ data "aws_availability_zones" "available" {
 }
 
 data "terraform_remote_state" "eks" {
-  backend = "local"
+  backend = "remote"
   config = {
     path = "./terraform.tfstate"
   }
