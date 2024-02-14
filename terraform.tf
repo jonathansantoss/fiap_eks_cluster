@@ -1,12 +1,12 @@
 terraform {
-    backend "remote" {
-      organization = "mellll_tec"
+  cloud {
+    organization = "fiap-eks"
 
-      workspaces {
-        name = "fiap-lanches-terraform-eks-gitactions"
-      }
+    workspaces {
+      name = "fiap-lanches-terraform-eks-gitactions"
+    }
   }
-  
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
