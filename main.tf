@@ -16,11 +16,6 @@ data "terraform_remote_state" "eks" {
   }
 }
 
-variable "cluster-name" {
-  type = string
-  default = "fiap-lanches-${random_string.suffix.result}"
-}
-
 # Retrieve EKS cluster configuration
 data "aws_eks_cluster" "cluster" {
   name = local.cluster_name
