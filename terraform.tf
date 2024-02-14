@@ -1,4 +1,11 @@
 terraform {
+  cloud {
+    organization = "mellll_tec"
+
+    workspaces {
+      name = "fiap-lanches-terraform-eks-gitactions"
+    }
+  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
