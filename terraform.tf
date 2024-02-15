@@ -1,7 +1,12 @@
 terraform {
-   backend "remote" {
-    hostname = "app.terraform.io"
+  # backend "s3" {
+  #   bucket         = "terraform-bucket"
+  #   key            = "terraform.tfstate"
+  #   region         = "us-east-1" # Altere para sua região
+  # }
+ cloud {
     organization = "fiap-lanches-eks"
+    hostname = "app.terraform.io"
     workspaces {
       name = "fiap-lanches-workflow"
     }
