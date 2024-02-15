@@ -2,7 +2,7 @@ terraform {
   backend "remote" {
     # hostname = "app.terraform.io"
     organization = "fiap-lanches-eks"
-    token = env("TF_TOKEN_API")
+    token = TF_TOKEN_API
 
 
     workspaces {
