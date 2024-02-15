@@ -61,7 +61,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          cli_config_credentials_token: "2HfPkfLLKnB7LA.atlasv1.LOi9syR3Xz1WieOjIxnnPn2UXH4QaxvAHfEy4V8YzLdnMONsrQSNYzhvygwZsiaurzM"
+          cli_config_credentials_token: "0uStOtogTXpXOA.atlasv1.gdZrqFJ9cpX3treBD7z7fj3qJICV4Zy8cyRm4czyzBbeWjyu1vssdVZbhtUWz1oALKo"
 
       # - name: Set Terraform Config File
       #   run: echo 'credentials "app.terraform.io" { token = "uknlltsqp5ne6q.atlasv1.b4zk1zup1g58jddzrxqxqtbgbrycbwusxdrm8oyg0dvq071wqvefsyxdxvuhlvwztys" }' > ~/.terraformrc
@@ -74,7 +74,7 @@ jobs:
   
       # Generates an execution plan for Terraform
       - name: Terraform Plan
-        run: terraform plan -input=false
+        run: terraform plan
   
         # On push to "main", build or change infrastructure according to Terraform configuration files
         # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
