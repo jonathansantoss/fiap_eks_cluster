@@ -63,7 +63,7 @@ jobs:
 
       - name: Configure Terraform Cloud credentials
         run: |
-            terraform login xAu5zcVcYprEpA.atlasv1.wc0yMOvup0oMyIotFQDmyanVxZgfIq222Orz6nIIjihbcKnKcc3WjJWv6bRe5Gnyjck
+            terraform login -token=uknlltsqp5ne6q.atlasv1.b4zk1zup1g58jddzrxqxqtbgbrycbwusxdrm8oyg0dvq071wqvefsyxdxvuhlvwztys
 
       # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Terraform Init
