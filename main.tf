@@ -22,15 +22,15 @@ data "terraform_remote_state" "eks" {
 
 # Retrieve EKS cluster configuration
 data "aws_eks_cluster" "cluster" {
-  name = local.cluster_name
+  name = "fiap-lanches-eks-cWTzWOQb"
 }
 
 data "aws_eks_cluster_auth" "cluster" {
-  name = local.cluster_name
+  name = "fiap-lanches-eks-cWTzWOQb"
 }
 
 locals {
-  cluster_name = "fiap-lanches-eks-${random_string.suffix.result}"
+  cluster_name = "fiap-lanches-eks-cWTzWOQb"
 }
 
 resource "random_string" "suffix" {
