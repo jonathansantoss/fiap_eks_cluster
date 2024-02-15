@@ -1,5 +1,6 @@
 terraform {
   cloud {
+    hostname = "app.terraform.io"
     organization = "fiap-eks"
 
     workspaces {
