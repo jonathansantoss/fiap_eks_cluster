@@ -2,7 +2,6 @@ terraform {
   backend "remote" {
     # hostname = "app.terraform.io"
     organization = "fiap-lanches-eks"
-    token = "aCDslwczpJJExA.atlasv1.Ew68eyzpU2aNxyLvXeWKyzbAxOw70La19mJIc8tZ5asyrhwSehWo6ht5n1IItx4OiFs"
 
     workspaces {
       name = "fiap-lanches-workflow"
