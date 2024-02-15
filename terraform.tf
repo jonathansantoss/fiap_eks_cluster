@@ -1,9 +1,9 @@
 terraform {
    backend "remote" {
     hostname = "app.terraform.io"
-    organization = "fiap-eks"
+    organization = "fiap-lanches-eks"
     workspaces {
-      name = "fiap-lanches-terraform-eks-gitactions"
+      name = "fiap-lanches-workflow"
     }
   }
   required_providers {
