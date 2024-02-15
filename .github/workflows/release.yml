@@ -59,12 +59,14 @@ jobs:
   
       # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform@v3
+        with:
+          cli_config_credentials_token: "4Qbw1ORASNEzCg.atlasv1.48WbpW1MHGKHt5JDKdZKXZ7hYqBpIhKv41mR3rD9liAL49VTWDjCko7KqUJv2c7rByM"
 
-      - name: Set Terraform Config File
-        run: echo 'credentials "app.terraform.io" { token = "uknlltsqp5ne6q.atlasv1.b4zk1zup1g58jddzrxqxqtbgbrycbwusxdrm8oyg0dvq071wqvefsyxdxvuhlvwztys" }' > ~/.terraformrc
-        env:
-          TF_API_TOKEN: uknlltsqp5ne6q.atlasv1.b4zk1zup1g58jddzrxqxqtbgbrycbwusxdrm8oyg0dvq071wqvefsyxdxvuhlvwztys
+      # - name: Set Terraform Config File
+      #   run: echo 'credentials "app.terraform.io" { token = "uknlltsqp5ne6q.atlasv1.b4zk1zup1g58jddzrxqxqtbgbrycbwusxdrm8oyg0dvq071wqvefsyxdxvuhlvwztys" }' > ~/.terraformrc
+      #   env:
+      #     TF_API_TOKEN: uknlltsqp5ne6q.atlasv1.b4zk1zup1g58jddzrxqxqtbgbrycbwusxdrm8oyg0dvq071wqvefsyxdxvuhlvwztys
 
       # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Terraform Init
