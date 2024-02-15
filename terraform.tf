@@ -1,16 +1,13 @@
 terraform {
-  # backend "s3" {
-  #   bucket         = "terraform-bucket"
-  #   key            = "terraform.tfstate"
-  #   region         = "us-east-1" # Altere para sua região
-  # }
- cloud {
-    organization = "fiap-lanches-eks"
+  backend "remote" {
     hostname = "app.terraform.io"
+    organization = "fiap-eks"
+
     workspaces {
-      name = "fiap-lanches-workflow"
+      name = "fiap-lanches-terraform-eks-gitactions"
     }
   }
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
