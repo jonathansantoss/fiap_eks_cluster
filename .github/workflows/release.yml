@@ -61,7 +61,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          cli_config_credentials_token: "0uStOtogTXpXOA.atlasv1.gdZrqFJ9cpX3treBD7z7fj3qJICV4Zy8cyRm4czyzBbeWjyu1vssdVZbhtUWz1oALKo"
+          cli_config_credentials_token: "aCDslwczpJJExA.atlasv1.Ew68eyzpU2aNxyLvXeWKyzbAxOw70La19mJIc8tZ5asyrhwSehWo6ht5n1IItx4OiFs"
 
       # - name: Set Terraform Config File
       #   run: echo 'credentials "app.terraform.io" { token = "uknlltsqp5ne6q.atlasv1.b4zk1zup1g58jddzrxqxqtbgbrycbwusxdrm8oyg0dvq071wqvefsyxdxvuhlvwztys" }' > ~/.terraformrc
