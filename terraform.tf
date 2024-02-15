@@ -1,10 +1,11 @@
 terraform {
-  cloud {
-    hostname = "app.terraform.io"
-    organization = "fiap-eks"
+  backend "remote" {
+    # hostname = "app.terraform.io"
+    organization = "fiap-lanches-eks"
+    token = "2HfPkfLLKnB7LA.atlasv1.LOi9syR3Xz1WieOjIxnnPn2UXH4QaxvAHfEy4V8YzLdnMONsrQSNYzhvygwZsiaurzM"
 
     workspaces {
-      name = "fiap-lanches-terraform-eks-gitactions"
+      name = "fiap-lanches-workflow"
     }
   }
 
