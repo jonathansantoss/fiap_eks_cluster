@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 data "aws_eks_cluster_auth" "kubernetes" {
-  name = module.eks_cluster.eks_cluster_id
+  name = module.eks.cluster_id
 }
 
 provider "helm" {
