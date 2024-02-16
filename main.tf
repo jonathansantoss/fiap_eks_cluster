@@ -20,6 +20,23 @@ data "terraform_remote_state" "eks" {
   }
 }
 
+# data "aws_eks_cluster" "cluster" {
+#   name = "fiap-lanches-eks-cWTzWOQb"
+# }
+
+resource "aws_eks_cluster" "cluster" {
+  name     = "fiap-lanches-eks-cWTzWOQb"
+  role_arn = aws_iam_role.example.arn
+
+  vpc_config {
+    subnet_ids = [aws_subnet.example1.id, aws_subnet.example2.id]
+  }
+}
+
+data "aws_eks_cluster_auth" "cluster" {
+  name = "fiap-lanches-eks-cWTzWOQb"
+}
+
 locals {
   cluster_name = "fiap-lanches-eks-cWTzWOQb"
 }
@@ -93,12 +110,4 @@ module "eks" {
       desired_size = 1
     }
   }
-}
-
-data "aws_eks_cluster" "cluster" {
-  name = "fiap-lanches-eks-cWTzWOQb"
-}
-
-data "aws_eks_cluster_auth" "cluster" {
-  name = "fiap-lanches-eks-cWTzWOQb"
 }
