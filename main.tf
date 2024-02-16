@@ -2,24 +2,6 @@ provider "aws" {
   region = "us-east-1"
 }
 
-data "aws_eks_cluster_auth" "kubernetes" {
-  name = module.eks.cluster_id
-}
-
-provider "helm" {
-  kubernetes {
-    host                   = module.eks.cluster_endpoint
-    token                  = data.aws_eks_cluster_auth.kubernetes.token
-    cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
-  }
-}
-
-provider "kubernetes" {
-  host                   = module.eks.cluster_endpoint
-  token                  = data.aws_eks_cluster_auth.kubernetes.token
-  cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
-}
-
 data "aws_availability_zones" "available" {
   filter {
     name   = "opt-in-status"
@@ -119,58 +101,4 @@ module "eks" {
       desired_size = 1
     }
   }
-}
-
-module "helm_release" {
-  source  = "cloudposse/helm-release/aws"
-  version = "0.10.1"
-
-  name = "echo"
-
-  eks_cluster_oidc_issuer_url = "https://"
-
-  chart = "https://github.com/jonathansantoss/fiap-lanches-helm/releases/download/fiap-lanches-0.2.0/fiap-lanches-0.2.0.tgz"
-  chart_version = "0.2.0"
-
-  create_namespace     = true
-  kubernetes_namespace = "echo"
-
-  atomic          = true
-  cleanup_on_fail = true
-  timeout         = 300
-  wait            = true
-
-  # These values will be deep merged
-  # values = [
-  # ]
-
-  # Enable the IAM role
-  iam_role_enabled = true
-
-  # Add the IAM role using set()
-  service_account_role_arn_annotation_enabled = true
-
-  # Dictates which ServiceAccounts are allowed to assume the IAM Role.
-  # In this case, only the "echo" ServiceAccount in the "echo" namespace
-  # will be able to assume the IAM Role created by this module.
-  service_account_name      = "echo"
-  service_account_namespace = "echo"
-
-  # IAM policy statements to add to the IAM role
-  iam_policy = [{
-    statements = [{
-      sid        = "ListMyBucket"
-      effect     = "Allow"
-      actions    = ["s3:ListBucket"]
-      resources  = ["arn:aws:s3:::test"]
-      conditions = []
-    },
-    {
-      sid        = "WriteMyBucket"
-      effect     = "Allow"
-      actions    = ["s3:PutObject", "s3:GetObject", "s3:DeleteObject"]
-      resources  = ["arn:aws:s3:::test/*"]
-      conditions = []
-    }]
-  }]
 }

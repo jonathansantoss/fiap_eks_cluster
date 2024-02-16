@@ -2,30 +2,31 @@
 # # SPDX-License-Identifier: MPL-2.0
 
 
-# provider "helm" {
-#   # kubernetes {
-#   #   # host                   = data.aws_eks_cluster.cluster.endpoint
-#   #   host                   = module.eks.cluster_endpoint
-#   #   # cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
-#   #   cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
-#   #   exec {
-#   #     api_version = "client.authentication.k8s.io/v1beta1"
-#   #     args        = ["eks", "get-token", "--cluster-name", "fiap-lanches-eks-cWTzWOQb"]
-#   #     command     = "aws"
-#   #   }
-#   # }
-#     kubernetes {
-#     config_path = "~/.kube/config"
-#   }
-# }
+provider "helm" {
+  kubernetes {
+    # host                   = data.aws_eks_cluster.cluster.endpoint
+    host                   = module.eks.cluster_endpoint
+    # cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
+    cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
+    exec {
+      api_version = "client.authentication.k8s.io/v1beta1"
+      args        = ["eks", "get-token", "--cluster-name", "fiap-lanches-eks-cWTzWOQb"]
+      command     = "aws"
+    }
+  }
+}
 
-# resource "helm_release" "fiap-lanches" {
-#   name = "fiap-lanches"
-#   chart = "https://github.com/jonathansantoss/fiap-lanches-helm/releases/download/fiap-lanches-0.2.0/fiap-lanches-0.2.0.tgz"
-#   namespace = "default"
+resource "helm_release" "fiap-lanches" {
+  name = "fiap-lanches"
+  chart = "https://github.com/jonathansantoss/fiap-lanches-helm/releases/download/fiap-lanches-0.2.0/fiap-lanches-0.2.0.tgz"
+  namespace = "default"
+  force_update = true
+  wait = true
+  lint = true
+  verify = true
 
-#    set {
-#     name  = "service.type"
-#     value = "LoadBalancer"
-#   }
-# }
+   set {
+    name  = "service.type"
+    value = "LoadBalancer"
+  }
+}
