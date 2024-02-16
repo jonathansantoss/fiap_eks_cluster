@@ -23,6 +23,7 @@ resource "helm_release" "fiap-lanches" {
   force_update = true
   wait = true
   lint = true
+  recreate_pods = true
 
    set {
     name  = "service.type"
