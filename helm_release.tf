@@ -22,12 +22,21 @@ resource "helm_release" "fiap-lanches" {
   namespace = "fiap-lanches"
   create_namespace = true
   force_update = true
-  wait = true
+  wait = false
   lint = true
   recreate_pods = true
 
    set {
     name  = "service.type"
     value = "LoadBalancer"
+  }
+    set {
+    name  = "cluster.enabled"
+    value = "true"
+  }
+
+  set {
+    name  = "metrics.enabled"
+    value = "true"
   }
 }
