@@ -20,15 +20,6 @@ data "terraform_remote_state" "eks" {
   }
 }
 
-# Retrieve EKS cluster configuration
-data "aws_eks_cluster" "cluster" {
-  name = "fiap-lanches-eks-cWTzWOQb"
-}
-
-data "aws_eks_cluster_auth" "cluster" {
-  name = "fiap-lanches-eks-cWTzWOQb"
-}
-
 locals {
   cluster_name = "fiap-lanches-eks-cWTzWOQb"
 }
@@ -102,4 +93,12 @@ module "eks" {
       desired_size = 1
     }
   }
+}
+
+data "aws_eks_cluster" "cluster" {
+  name = "fiap-lanches-eks-cWTzWOQb"
+}
+
+data "aws_eks_cluster_auth" "cluster" {
+  name = "fiap-lanches-eks-cWTzWOQb"
 }
