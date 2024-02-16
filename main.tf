@@ -2,6 +2,23 @@ provider "aws" {
   region = "us-east-1"
 }
 
+data "aws_eks_cluster_auth" "kubernetes" {
+  name = module.eks_cluster.eks_cluster_id
+}
+
+provider "helm" {
+  kubernetes {
+    host                   = module.eks_cluster.eks_cluster_endpoint
+    token                  = data.aws_eks_cluster_auth.kubernetes.token
+    cluster_ca_certificate = base64decode(module.eks_cluster.eks_cluster_certificate_authority_data)
+  }
+}
+
+provider "kubernetes" {
+  host                   = module.eks_cluster.eks_cluster_endpoint
+  token                  = data.aws_eks_cluster_auth.kubernetes.token
+  cluster_ca_certificate = base64decode(module.eks_cluster.eks_cluster_certificate_authority_data)
+}
 
 data "aws_availability_zones" "available" {
   filter {
