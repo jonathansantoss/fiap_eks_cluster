@@ -23,7 +23,6 @@ resource "helm_release" "fiap-lanches" {
   force_update = true
   wait = true
   lint = true
-  verify = true
 
    set {
     name  = "service.type"
