@@ -1,6 +1,10 @@
 # Copyright (c) HashiCorp, Inc.
 # SPDX-License-Identifier: MPL-2.0
 
+data "aws_eks_cluster" "cluster" {
+  name = "fiap-lanches-eks-cWTzWOQb"
+}
+
 provider "helm" {
   kubernetes {
     host                   = data.aws_eks_cluster.cluster.endpoint
