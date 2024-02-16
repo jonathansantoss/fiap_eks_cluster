@@ -18,7 +18,7 @@ provider "helm" {
 
 resource "helm_release" "fiap-lanches" {
   name = "fiap-lanches"
-  chart = "https://github.com/jonathansantoss/fiap-lanches-helm/releases/download/fiap-lanches-0.2.0/fiap-lanches-0.2.0.tgz"
+  chart = "https://github.com/jonathansantoss/fiap-lanches-helm/blob/master/docs/fiap-lanches-0.2.0.tgz"
   namespace = "fiap-lanches"
   create_namespace = true
   force_update = true
