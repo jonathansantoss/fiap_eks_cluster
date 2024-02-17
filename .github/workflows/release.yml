@@ -39,9 +39,6 @@ jobs:
       - name: Install Helm
         uses: azure/setup-helm@v3
 
-      - name: ls
-        run: ls
-
       - name: Package chart
         run: helm package ./
 
