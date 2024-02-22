@@ -20,10 +20,6 @@ data "terraform_remote_state" "eks" {
   }
 }
 
-# data "aws_eks_cluster" "cluster" {
-#   name = "fiap-lanches-eks-cWTzWOQb"
-# }
-
 data "aws_eks_cluster_auth" "cluster" {
   name = "fiap-lanches-eks-cWTzWOQb"
 }
